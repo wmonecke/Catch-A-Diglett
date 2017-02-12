@@ -9,6 +9,40 @@ body {
   background: linear-gradient(45deg, rgba(163,196,149,1) 0%, rgba(0,128,128,1) 100%); /* w3c */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008080', endColorstr='#A3C495',GradientType=1 ); /* ie6-9 */
   height: 100vh;
-  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: none;
+  font-family: 'pokemon-font', monospace;
+  // font-family: 'Raleway', sans-serif;
   color: white;
+
+  header {
+    text-align: center;
+
+    img {
+      position: relative;
+      bottom: 10px;
+    }
+  }
+
+  p {
+    font-size: 20px;
+    margin-top: -12px;
+    margin-bottom: 5px;
+  }
+}
+
+section {
+  width: 600px;
+  height: 600px;
+  margin: auto;
+
+  .hole {
+    width: 60px;
+    height: 60px;
+    border: 1px solid white;
+    float: left;
+    box-sizing: border-box;
+    background-image: url('../img/Grass.png');
+    background-position: center center;
+    border-radius: 4px;
+  }
 }
