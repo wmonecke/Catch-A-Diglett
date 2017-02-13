@@ -1,124 +1,141 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
-    <title> Catch-Some-Diglett </title>
+    <title> Catch-A-Diglett </title>
     <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
   </head>
+
   <body>
+
+    <!-- <form>
+      <span class="player">Go get em': <br>
+        <span class="player" id="player">Walter</span>
+      </span> <br>
+      <span class="timer"> TIMER: <br></span>
+      <span class="timer" id="timer">0</span>
+      <span class="timer"> seconds</span>
+    </form> -->
+
+    <div class="popup" id="popup">
+      <img src="img/ash3.png" alt="Ash">
+      <p> Hey there, Pokemon trainer! <br><br>Catch as many Digletts as you can under the time limit.<br>
+        <i>Watch out for Dugtrios, they are stronger than you and you will lose points!</i> <br><br>
+        Every Diglett gives you <b>1</b> point. If you fight a Dugtrio you'll lose <b>3</b>! <br> <br>
+        GO CATCH 'EM ALL!
+      </p>
+    </div>
+
     <header>
+      <button class="start" id="start" type="button" name="button"> Start </button>
       <img src="img/Diglett.png" alt="Diglett">
       <img src="img/Title.png" alt="Title">
       <img src="img/Dugtrio.png" alt="Dugtrio">
-      <p>Instructions: Catch as many Digletts as you can under the time limit.<br>
-        <i>Watch out for Dugtrios, they are stronger than you!</i></p>
-
+      <button class="instructions" id="instructions" type="button" name="button"> Instructions </button>
     </header>
-    <section id="container">
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
-      <div class="hole mole1"></div>
 
+    <span class="afterstart score"> Score: <span id="score"> 0 </span> Points</span> <br>
+    <span class="afterstart timer" id="timer"> 30 </span>
+    <span class="afterstart player"> Player: Walter </span>
+
+    <section id="container">
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
+      <div class="hole "></div>
     </section>
 
-    <script type="text/javascript" src="js/jQuery.min.js"></script>
+    <script type="text/javascript" src="js/lodash.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="js/jquery.smoothState.js"></script> -->
     <script type="text/javascript" src="js/Ion.sound.min.js"></script>
     <script type="text/javascript" src="js/logic.js"></script>
     <script type="text/javascript" src="js/interface.js"></script>

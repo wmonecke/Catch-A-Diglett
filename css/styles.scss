@@ -1,5 +1,56 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
 
+.score {
+  font-size: 30px;
+  font-weight: 100;
+  position: relative;
+  left: 40px;
+  top: 250px;
+}
+
+.timer {
+  font-size: 70px;
+  font-weight: 100;
+  position: relative;
+  left: 120px;
+  top: 350px;
+}
+
+.player {
+  font-size: 30px;
+  font-weight: 100;
+  position: relative;
+  right: 40px;
+  top: 250px;
+  float: right;
+}
+
+.popup {
+  position: absolute;
+  z-index: 2;
+  width: 90%;
+  text-align: center;
+  margin: 300px 0;
+  border: 2px solid black;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.8);
+  display: none;
+  padding: 190px 4px;
+  bottom: -300px;
+
+  p {
+    position: relative;
+    left: 50px;
+    top: 150px;
+  }
+
+  img {
+    float: left;
+    position: relative;
+    left: 110px;
+  }
+}
+
 body {
   background: -moz-linear-gradient(45deg, rgba(163,196,149,1) 0%, rgba(0,128,128,1) 100%); /* ff3.6+ */
   background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(163,196,149,1)), color-stop(100%, rgba(0,128,128,1))); /* safari4+,chrome */
@@ -9,17 +60,76 @@ body {
   background: linear-gradient(45deg, rgba(163,196,149,1) 0%, rgba(0,128,128,1) 100%); /* w3c */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008080', endColorstr='#A3C495',GradientType=1 ); /* ie6-9 */
   height: 100vh;
+  width: 100vw;
   -webkit-font-smoothing: none;
   font-family: 'pokemon-font', monospace;
-  // font-family: 'Raleway', sans-serif;
   color: white;
+  margin: 0px;
+  padding: 0px;
 
   header {
     text-align: center;
+    position: relative;
+    left: 14px;
+
+    button {
+      position: relative;
+      background: #34d989;
+      background-image: -webkit-linear-gradient(top, #34d989, #53b82b);
+      background-image: -moz-linear-gradient(top, #34d989, #53b82b);
+      background-image: -ms-linear-gradient(top, #34d989, #53b82b);
+      background-image: -o-linear-gradient(top, #34d989, #53b82b);
+      background-image: linear-gradient(to bottom, #34d989, #53b82b);
+      -webkit-border-radius: 13;
+      -moz-border-radius: 13;
+      border-radius: 13px;
+      -webkit-box-shadow: 0px 1px 3px #666666;
+      -moz-box-shadow: 0px 1px 3px #666666;
+      box-shadow: 0px 1px 3px #666666;
+      color: #ffffff;
+      font-size: 25px;
+      padding: 10px 20px 10px 20px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: color .4s ease;
+      outline: none;
+    }
+
+    button:hover {
+      background: #affc3c;
+      background-image: -webkit-linear-gradient(top, #affc3c, #8cd934);
+      background-image: -moz-linear-gradient(top, #affc3c, #8cd934);
+      background-image: -ms-linear-gradient(top, #affc3c, #8cd934);
+      background-image: -o-linear-gradient(top, #affc3c, #8cd934);
+      background-image: linear-gradient(to bottom, #affc3c, #8cd934);
+      color: grey;
+      border-color: white;
+      text-decoration: none;
+    }
+
+    :first-child {
+      top: 132px;
+      right: 30px;
+      padding-left: 45px;
+      padding-right: 45px;
+    }
+
+    :nth-child(5) {
+      top: 134px;
+      left: 27px;
+    }
+
+    :nth-child(4) {
+      top: 5px;
+    }
 
     img {
       position: relative;
-      bottom: 10px;
+      bottom: 1px;
+    }
+
+    img:nth-child(3){
+      top: -10px;
     }
   }
 
@@ -30,19 +140,33 @@ body {
   }
 }
 
+
 section {
   width: 600px;
   height: 600px;
-  margin: auto;
+  margin: 0px auto 0px;
+  position: relative;
+  bottom: 110px;
 
   .hole {
     width: 60px;
     height: 60px;
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     float: left;
     box-sizing: border-box;
     background-image: url('../img/Grass.png');
     background-position: center center;
     border-radius: 4px;
+  }
+
+  .mole1 {
+    background-image: url('../img/Diglett-mini.png');
+    background-repeat: no-repeat;
+  }
+
+  .mole2 {
+    background-image: url('../img/Dugtrio-mini.png');
+    background-repeat: no-repeat;
+
   }
 }
