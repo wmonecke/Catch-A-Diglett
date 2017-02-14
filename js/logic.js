@@ -14,11 +14,12 @@ function Game (player) {
   ];
   this.diglett = 1;
   this.dugtrio = 2;
+  this.mewtwo = 3;
   this.score = 0;
 }
 
 //Choose one random Index in a random Column - Function
-Game.prototype.wildDiglettAppears = function() {
+Game.prototype.wildDiglettAppears = function(hide) {
 
   //Picking a random Bush for a DIGLETT, by picking a random Row and then a random Column inside:
   var randomRow = Math.floor(Math.random() * this.board.length);
@@ -31,24 +32,37 @@ Game.prototype.wildDiglettAppears = function() {
   var randomCol2 = Math.floor(Math.random() * this.board[randomRow].length);
   var randomDugtrio = this.board[randomRow2][randomCol2];
   // console.log('My random Bush for Dugtrio is located at Row: ' + randomRow2 + ' and Column: ' + randomCol2);
-
-  //Inserting one random (Diglett = 1) and one random (Dugtrio = 2) into the array
-  this.board[randomRow][randomCol] = 1;
-  this.board[randomRow2][randomCol2] = 2;
-
-  // console.log('My first board: ' + this.board);
-
   var that = this;
+  var x = Math.random();
+  //Inserting one random (Diglett = 1) and one random (Dugtrio = 2) into the array
+  if (x > 0.3 ) {
+    setTimeout(function(){
+      that.board[randomRow2][randomCol2] = 2;
+    }, 120);
+  }
+
+  if ( x > 0.7) {
+    this.board[randomRow][randomCol] = 1;
+  }
+
   setTimeout(function(){
     if (that.board[randomRow][randomCol] === 1 || that.board[randomRow2][randomCol2] === 2) {
       that.board[randomRow][randomCol] = null;
       that.board[randomRow2][randomCol2] = null;
       // console.log('My second board: ' + that.board);
     }
-  }, 1000);
+  }, hide);
 
 };
 
 Game.prototype.removeMole = function (row, column) {
     this.board[row][column] = null;
+};
+
+Game.prototype.removeAllMoles = function () {
+  for (var i = 0; i < this.board.length; i++) {
+    for (var j = 0; j < this.board[i].length; j++) {
+      this.board[i][j] = null;
+    }
+  }
 };

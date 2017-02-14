@@ -9,7 +9,7 @@
 }
 
 .timer {
-  font-size: 70px;
+  font-size: 80px;
   font-weight: 100;
   position: relative;
   left: 120px;
@@ -21,7 +21,7 @@
   font-weight: 100;
   position: relative;
   right: 40px;
-  top: 250px;
+  top: 215px;
   float: right;
 }
 
@@ -146,12 +146,12 @@ section {
   height: 600px;
   margin: 0px auto 0px;
   position: relative;
-  bottom: 110px;
+  bottom: 130px;
 
   .hole {
     width: 60px;
     height: 60px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.0);
     float: left;
     box-sizing: border-box;
     background-image: url('../img/Grass.png');
@@ -162,11 +162,13 @@ section {
   .mole1 {
     background-image: url('../img/Diglett-mini.png');
     background-repeat: no-repeat;
+    transition: background-image .5s ease;
   }
 
   .mole2 {
     background-image: url('../img/Dugtrio-mini.png');
     background-repeat: no-repeat;
+    transition: background-image .5s ease;
 
   }
 }
