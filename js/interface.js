@@ -3,26 +3,36 @@ var myGame;
 $(document).ready(function(){
 
   $('#popup').fadeIn(2000, function(){
+    $("#sentence").typed({
+        strings: ["Hey there, Pokemon trainer! Welcome to Catch-A-Diglett! ^1000", "Catch as many Digletts as you can under the time limit.", "Watch out for Dugtrios,\n they are stronger than you and you will lose points!",
+        "Every Diglett gives you 1 point. If you fight a Dugtrio you'll lose 3!", "You might encounter Alakazam's, which will give you 5 points!!", "Or maybe you'll encounter a..^1000.... ^1000 Legendary Pokemon^1000", "GO CATCH 'EM ALL!"],
+        typeSpeed: 0,
+        cursorChar: ""
+      });
 
     $('#popup').on('click', function(){
       ion.sound.play("click");
+      ion.sound.play("Pika");
       $('#popup').fadeOut(300);
     });
   });
 
 ion.sound({
    sounds: [
-     {name: "Pokemon", volume: 0.8},
+     {name: "Pokemon2", volume: 0.5},
      {name: "PokeOpening", volume: 0.3},
      {name: "TicToc", volume: 0.8},
      {name: "Heartbeat20s", volume: 0.6},
-     {name: "Finish", volume: 1.7},
+     {name: "Finish", volume: 2.0},
      {name: "Catch", volume: 1.0},
      {name: "click", volume: 1.0},
-     {name: "Alakazam", volume: 2.5}
+     {name: "Alakazam", volume: 0.7},
+     {name: "Pika", volume: 0.4},
+     {name: "MewTwo", volume: 1.0}
    ],
    volume: 1.0,
    path: "./js/sounds/",
+   multiplay: true,
    preload: true
  });
 
@@ -32,30 +42,77 @@ ion.sound({
 
   $('#container').on('click', '.mole1', function(){
     score++;
+    console.log(this);
+    $(this).append('<span id="span">+ 1</span>');
+    $('#span').fadeIn(50);
     $('#score').html(score);
     ion.sound.play("Catch");
     $(this).removeClass('mole1');
     myGame.removeMole($(this).data('row'), $(this).data('col'));
-    renderBoard();
+
+    var that = this;
+    setTimeout(function(){
+      renderBoard();
+      $(that).remove('span');
+    }, 1000);
   });
 
   $('#container').on('click', '.mole2', function(){
     score = score - 3;
+    $(this).append('<span id="span">- 3</span>');
+    $('#span').fadeIn(50);
     $('#score').html(score);
     $(this).removeClass('mole2');
     myGame.removeMole($(this).data('row'), $(this).data('col'));
-    renderBoard();
+
+    var that = this;
+    setTimeout(function(){
+      renderBoard();
+      $(that).remove('span');
+    }, 1000);
   });
 
   $('#container').on('click', '.mole3', function(){
     score = score + 5;
+    $(this).append('<span id="span">+ 5</span>');
+    $('#span').fadeIn(50);
     $('#score').html(score);
     ion.sound.play("Alakazam");
     changeBackground();
     $(this).removeClass('mole3');
     myGame.removeMole($(this).data('row'), $(this).data('col'));
-    renderBoard();
+
+    var that = this;
+    setTimeout(function(){
+      renderBoard();
+      $(that).remove('span');
+    }, 1000);
   });
+
+  $('#container').on('click', '.mole4', function(){
+    score = score + 10;
+    $(this).append('<span id="span">+ 10</span>');
+    $('#span').fadeIn(50);
+    ion.sound.play("MewTwo");
+    $('#score').html(score);
+    backgroundlegendary();
+    $(this).removeClass('mole4');
+    myGame.removeMole($(this).data('row'), $(this).data('col'));
+
+    var that = this;
+    setTimeout(function(){
+      renderBoard();
+      $(that).remove('span');
+    }, 1000);
+  });
+
+  function backgroundlegendary(){
+    $('.backgroundlegendary').fadeIn(1000);
+    setTimeout(function(){
+      $('.backgroundlegendary').fadeOut(1000);
+      // $('body').css('background', 'linear-gradient(45deg, rgba(163,196,149,1) 0%, rgba(0,128,128,1) 100%');
+    }, 4000);
+  }
 
   function changeBackground(){
     $('.backgroundchange').fadeIn(1000);
@@ -68,18 +125,30 @@ ion.sound({
 
 
   function startGame(){
-    $('#timer').html('50'); $('#score').html('0');
-    gameTimer(); score = 0; var timer = 50;
-    ion.sound.stop(); ion.sound.play("Pokemon");
-
+    $('#timer').html('50');
+    score = 0;
+    $('#score').html('0');
+    gameTimer();
+    ion.sound.stop();
+    ion.sound.play("Pokemon2");
     var interval2 = setInterval(function(){
       console.log(timer);
+
+      if(timer === 5){
+        ion.sound.play("TicToc");
+      }
+
+      if(timer === 20){
+        ion.sound.play("Heartbeat20s");
+      }
+
       if (timer === 0) {
+        ion.sound.stop();
         ion.sound.play("Finish");
         clearInterval(interval2);
+        renderBoard();
 
       } else if (timer <= 5) {
-        ion.sound.play("TicToc");
         myGame.wildDiglettAppears(500);
         myGame.wildDiglettAppears(500);
         myGame.wildDiglettAppears(500);
@@ -94,7 +163,6 @@ ion.sound({
         renderBoard();
 
       } else if (timer <= 20) {
-        ion.sound.play("Heartbeat20s");
         myGame.wildDiglettAppears(800);
         myGame.wildDiglettAppears(800);
         myGame.wildDiglettAppears(800);
@@ -113,11 +181,14 @@ ion.sound({
       } else if (timer <= 50) {
         myGame.wildDiglettAppears(3000);
         renderBoard();
+
       }
     }, 500);
   }
 
   myGame = new Game('Walter');
+
+var timer = 50;
 
   function gameTimer (){
     timer = 50;
@@ -149,6 +220,8 @@ ion.sound({
           pokemon = 'mole2';        // Dugtrio
         } else if (col === 3) {
           pokemon = 'mole3';
+        } else  if (col === 4) {
+          pokemon = 'mole4';
         } else {
           pokemon = '';             //Grass
         }
@@ -174,6 +247,12 @@ ion.sound({
     ion.sound.play("click");
     $('header, section  ').css('filter', 'blur(5px)');
     $('#popup').fadeIn(300, function(){
+      $("#sentence").typed({
+          strings: ["Hey there, Pokemon trainer! Welcome to Catch-A-Diglett!", "Catch as many Digletts as you can under the time limit.", "Watch out for Dugtrios, they are stronger than you and you will lose points!",
+          "Every Diglett gives you 1 point. If you fight a Dugtrio you'll lose 3!", "You might encounter Alakazam's, which will give you 5 points!!", "Or maybe you'll encounter a ^1000 Legendary Pokemon...", "GO CATCH 'EM ALL!"],
+          typeSpeed: 0,
+          cursorChar: ""
+        });
 
       $('#popup').on('click', function(){
         $('header, section, body span.html').css('filter', 'none');
