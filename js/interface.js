@@ -18,7 +18,8 @@ ion.sound({
      {name: "Heartbeat20s", volume: 0.6},
      {name: "Finish", volume: 1.7},
      {name: "Catch", volume: 1.0},
-     {name: "click", volume: 1.0}
+     {name: "click", volume: 1.0},
+     {name: "Alakazam", volume: 2.5}
    ],
    volume: 1.0,
    path: "./js/sounds/",
@@ -46,11 +47,31 @@ ion.sound({
     renderBoard();
   });
 
+  $('#container').on('click', '.mole3', function(){
+    score = score + 5;
+    $('#score').html(score);
+    ion.sound.play("Alakazam");
+    changeBackground();
+    $(this).removeClass('mole3');
+    myGame.removeMole($(this).data('row'), $(this).data('col'));
+    renderBoard();
+  });
+
+  function changeBackground(){
+    $('.backgroundchange').fadeIn(1000);
+    // $('body').css({'background': 'url(../img/GifBackground2.gif)', 'background-repeat': 'no-repeat', 'background-size': 'cover'});
+    setTimeout(function(){
+      $('.backgroundchange').fadeOut(1000);
+      // $('body').css('background', 'linear-gradient(45deg, rgba(163,196,149,1) 0%, rgba(0,128,128,1) 100%');
+    }, 500);
+  }
+
+
   function startGame(){
-    $('#timer').html('50');
-    gameTimer();
-    ion.sound.stop();
-    ion.sound.play("Pokemon");
+    $('#timer').html('50'); $('#score').html('0');
+    gameTimer(); score = 0; var timer = 50;
+    ion.sound.stop(); ion.sound.play("Pokemon");
+
     var interval2 = setInterval(function(){
       console.log(timer);
       if (timer === 0) {
@@ -98,8 +119,6 @@ ion.sound({
 
   myGame = new Game('Walter');
 
-var timer = 50;
-
   function gameTimer (){
     timer = 50;
 
@@ -128,6 +147,8 @@ var timer = 50;
           pokemon = 'mole1';        //Diglett
         } else if (col === 2) {
           pokemon = 'mole2';        // Dugtrio
+        } else if (col === 3) {
+          pokemon = 'mole3';
         } else {
           pokemon = '';             //Grass
         }

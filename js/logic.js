@@ -14,7 +14,7 @@ function Game (player) {
   ];
   this.diglett = 1;
   this.dugtrio = 2;
-  this.mewtwo = 3;
+  this.alakazam = 3;
   this.score = 0;
 }
 
@@ -32,6 +32,10 @@ Game.prototype.wildDiglettAppears = function(hide) {
   var randomCol2 = Math.floor(Math.random() * this.board[randomRow].length);
   var randomDugtrio = this.board[randomRow2][randomCol2];
   // console.log('My random Bush for Dugtrio is located at Row: ' + randomRow2 + ' and Column: ' + randomCol2);
+  var randomRow3 = Math.floor(Math.random() * this.board.length);
+  var randomCol3 = Math.floor(Math.random() * this.board[randomRow].length);
+  var randomAlakazam = this.board[randomRow3][randomCol3];
+
   var that = this;
   var x = Math.random();
   //Inserting one random (Diglett = 1) and one random (Dugtrio = 2) into the array
@@ -45,10 +49,15 @@ Game.prototype.wildDiglettAppears = function(hide) {
     this.board[randomRow][randomCol] = 1;
   }
 
+  if (x > 0.95 ) {
+    this.board[randomRow][randomCol] = 3;
+  }
+
   setTimeout(function(){
-    if (that.board[randomRow][randomCol] === 1 || that.board[randomRow2][randomCol2] === 2) {
+    if (that.board[randomRow][randomCol] === 1 || that.board[randomRow2][randomCol2] === 2 || this.board[randomRow][randomCol] === 3) {
       that.board[randomRow][randomCol] = null;
       that.board[randomRow2][randomCol2] = null;
+      that.board[randomRow3][randomCol3] = null;
       // console.log('My second board: ' + that.board);
     }
   }, hide);
