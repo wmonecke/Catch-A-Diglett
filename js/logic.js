@@ -58,7 +58,7 @@ Game.prototype.wildDiglettAppears = function(hide) {
     this.board[randomRow3][randomCol3] = 3;
   }
 
-  if (x > 0.99) {
+  if (x > 0.98) {
     this.board[randomRow4][randomCol4] = 4;
   }
 

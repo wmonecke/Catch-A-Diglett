@@ -2,6 +2,11 @@ var myGame;
 
 $(document).ready(function(){
 
+  setTimeout(function(){
+    $('#input, label').fadeIn(1000);
+  }, 38000);
+
+
   $('#popup').fadeIn(2000, function(){
     $("#sentence").typed({
         strings: ["Hey there, Pokemon trainer! Welcome to Catch-A-Diglett! ^1000", "Catch as many Digletts as you can under the time limit.", "Watch out for Dugtrios,\n they are stronger than you and you will lose points!",
@@ -10,7 +15,19 @@ $(document).ready(function(){
         cursorChar: ""
       });
 
-    $('#popup').on('click', function(){
+      $('#input').bind("enterKey",function(e){
+        $('#player').html(this.value);
+      });
+
+      $('#input').keyup(function(e){
+        if(e.keyCode === 13) {
+
+          $(this).trigger("enterKey");
+          $('#input, label').fadeOut(1000);
+        }
+      });
+
+    $('#popup :not(#input)').on('click', function(){
       ion.sound.play("click");
       ion.sound.play("Pika");
       $('#popup').fadeOut(300);
@@ -19,16 +36,18 @@ $(document).ready(function(){
 
 ion.sound({
    sounds: [
-     {name: "Pokemon2", volume: 0.5},
+     {name: "Pokemon2", volume: 0.4},
      {name: "PokeOpening", volume: 0.3},
-     {name: "TicToc", volume: 0.8},
+     {name: "TicToc", volume: 0.2},
      {name: "Heartbeat20s", volume: 0.6},
      {name: "Finish", volume: 2.0},
      {name: "Catch", volume: 1.0},
      {name: "click", volume: 1.0},
      {name: "Alakazam", volume: 0.7},
      {name: "Pika", volume: 0.4},
-     {name: "MewTwo", volume: 1.0}
+     {name: "MewTwo", volume: 1.0},
+     {name: "10s", volume: 0.7},
+     {name: "Start", volume: 0.2}
    ],
    volume: 1.0,
    path: "./js/sounds/",
@@ -95,7 +114,12 @@ ion.sound({
     $('#span').fadeIn(50);
     ion.sound.play("MewTwo");
     $('#score').html(score);
+    $('header').css({'opacity': '0', 'transition': 'opacity 1s ease'});
     backgroundlegendary();
+    setTimeout(function(){
+      $('header').css({'opacity': '1', 'transition': 'opacity 1s ease'});
+    }, 4000);
+
     $(this).removeClass('mole4');
     myGame.removeMole($(this).data('row'), $(this).data('col'));
 
@@ -123,87 +147,104 @@ ion.sound({
     }, 500);
   }
 
-
   function startGame(){
+
     $('#timer').html('50');
     score = 0;
     $('#score').html('0');
-    gameTimer();
     ion.sound.stop();
-    ion.sound.play("Pokemon2");
-    var interval2 = setInterval(function(){
-      console.log(timer);
+    ion.sound.play("Start");
 
-      if(timer === 5){
-        ion.sound.play("TicToc");
+    var counter = 4;
+
+     var stop = setInterval(function(){
+      counter = counter - 1;
+      if (counter === 0) {
+       clearInterval(stop);
       }
+      $('.counter').html(counter);
+    }, 1000);
 
-      if(timer === 20){
-        ion.sound.play("Heartbeat20s");
-      }
+    $('.spinner').fadeIn(500);  //css('display', 'inline-block');
+    setTimeout(function(){
+      $('.spinner').fadeOut(500);
+    }, 3500);
 
-      if (timer === 0) {
-        ion.sound.stop();
-        ion.sound.play("Finish");
-        clearInterval(interval2);
-        renderBoard();
+    setTimeout(function(){
+      gameTimer();
+      ion.sound.play("Pokemon2");
+      var interval2 = setInterval(function(){
+        console.log(timer);
 
-      } else if (timer <= 5) {
-        myGame.wildDiglettAppears(1000);
-        myGame.wildDiglettAppears(1000);
-        myGame.wildDiglettAppears(1000);
-        myGame.wildDiglettAppears(1000);
-        renderBoard();
+        if(timer === 20){
+          ion.sound.play("Heartbeat20s");
+        }
 
-        setTimeout(function(){
+        if (timer === 0) {
+          ion.sound.stop();
+          ion.sound.play("Finish");
+          clearInterval(interval2);
           renderBoard();
-        }, 1000);
+          ion.sound.play("PokeOpening");
 
-      } else if (timer <= 10) {
-        myGame.wildDiglettAppears(1800);
-        myGame.wildDiglettAppears(1800);
-        myGame.wildDiglettAppears(1800);
-        myGame.wildDiglettAppears(1800);
-        renderBoard();
-
-        setTimeout(function(){
+        } else if (timer <= 5) {
+          myGame.wildDiglettAppears(1000);
+          myGame.wildDiglettAppears(1000);
+          myGame.wildDiglettAppears(1000);
+          myGame.wildDiglettAppears(1000);
           renderBoard();
-        }, 1801);
 
-      } else if (timer <= 20) {
-        myGame.wildDiglettAppears(2000);
-        myGame.wildDiglettAppears(2000);
-        myGame.wildDiglettAppears(2000);
-        renderBoard();
-        setTimeout(function(){
+          setTimeout(function(){
+            renderBoard();
+          }, 1000);
+
+        } else if (timer <= 10) {
+          myGame.wildDiglettAppears(1800);
+          myGame.wildDiglettAppears(1800);
+          myGame.wildDiglettAppears(1800);
+          myGame.wildDiglettAppears(1800);
           renderBoard();
-        }, 2000);
 
-      } else if (timer <= 30 ) {
-        myGame.wildDiglettAppears(2500);
-        myGame.wildDiglettAppears(2500);
-        renderBoard();
-        setTimeout(function(){
+          setTimeout(function(){
+            renderBoard();
+          }, 1801);
+
+        } else if (timer <= 20) {
+          myGame.wildDiglettAppears(2000);
+          myGame.wildDiglettAppears(2000);
+          myGame.wildDiglettAppears(2000);
           renderBoard();
-        }, 2500);
+          setTimeout(function(){
+            renderBoard();
+          }, 2000);
 
-      } else if (timer <= 40) {
-        myGame.wildDiglettAppears(3000);
-        myGame.wildDiglettAppears(3000);
-        renderBoard();
-        setTimeout(function(){
+        } else if (timer <= 30 ) {
+          myGame.wildDiglettAppears(2500);
+          myGame.wildDiglettAppears(2500);
           renderBoard();
-        }, 3000);
+          setTimeout(function(){
+            renderBoard();
+          }, 2500);
 
-      } else if (timer <= 50) {
-        myGame.wildDiglettAppears(3000);
-        renderBoard();
-        setTimeout(function(){
+        } else if (timer <= 40) {
+          myGame.wildDiglettAppears(3000);
+          myGame.wildDiglettAppears(3000);
           renderBoard();
-        }, 3000);
+          setTimeout(function(){
+            renderBoard();
+          }, 3000);
 
-      }
-    }, 500);
+        } else if (timer <= 50) {
+          myGame.wildDiglettAppears(3000);
+          renderBoard();
+          setTimeout(function(){
+            renderBoard();
+          }, 3000);
+
+        }
+      }, 500);
+    }, 3200);
+
   }
 
   myGame = new Game('Walter');
@@ -222,6 +263,14 @@ var timer = 50;
         renderBoard();
 
         clearInterval(interval);
+      }
+
+      if(timer === 5){
+        ion.sound.play("TicToc");
+      }
+
+      if(timer === 10){
+        ion.sound.play("10s");
       }
     }, 1000);
   }

@@ -9,12 +9,14 @@
   </head>
 
   <body>
-  <div class="backgroundchange">
 
-  </div>
-  <div class="backgroundlegendary">
 
+  <div class="spinner spinner1">
+    <div class="counter">4</div>
   </div>
+
+  <div class="backgroundchange"></div>
+  <div class="backgroundlegendary"></div>
     <!-- <form>
       <span class="player">Go get em': <br>
         <span class="player" id="player">Walter</span>
@@ -23,7 +25,7 @@
       <span class="timer" id="timer">0</span>
       <span class="timer"> seconds</span>
     </form> -->
-
+    <div class="finish" id="finish"></div>
     <div class="popup element" id="popup">
       <img src="img/ash3.png" alt="Ash">
       <p id="sentence">
@@ -34,6 +36,7 @@
          Or maybe you'll encounter a Legendary Pokemon... <br><br>
         GO CATCH 'EM ALL! -->
       </p>
+      <label for="input">Whats your name, Trainer?  </label><input id="input" type="text" name="" value="" autocomplete="off">
     </div>
 
     <header>
@@ -46,7 +49,7 @@
 
     <span class="afterstart score"> Score: <span id="score"> 0 </span> Points</span> <br>
     <span class="afterstart timer" id="timer"> 50 </span>
-    <span class="afterstart player"> Player: Walter </span>
+    <span class="afterstart player"> Player: <span id="player"> </span> </span>
 
     <section id="container">
       <div class="hole "></div>
