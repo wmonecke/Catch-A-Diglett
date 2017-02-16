@@ -149,38 +149,58 @@ ion.sound({
         renderBoard();
 
       } else if (timer <= 5) {
-        myGame.wildDiglettAppears(500);
-        myGame.wildDiglettAppears(500);
-        myGame.wildDiglettAppears(500);
-        myGame.wildDiglettAppears(500);
+        myGame.wildDiglettAppears(1000);
+        myGame.wildDiglettAppears(1000);
+        myGame.wildDiglettAppears(1000);
+        myGame.wildDiglettAppears(1000);
         renderBoard();
+
+        setTimeout(function(){
+          renderBoard();
+        }, 1000);
 
       } else if (timer <= 10) {
-        myGame.wildDiglettAppears(600);
-        myGame.wildDiglettAppears(600);
-        myGame.wildDiglettAppears(600);
-        myGame.wildDiglettAppears(600);
+        myGame.wildDiglettAppears(1800);
+        myGame.wildDiglettAppears(1800);
+        myGame.wildDiglettAppears(1800);
+        myGame.wildDiglettAppears(1800);
         renderBoard();
+
+        setTimeout(function(){
+          renderBoard();
+        }, 1801);
 
       } else if (timer <= 20) {
-        myGame.wildDiglettAppears(800);
-        myGame.wildDiglettAppears(800);
-        myGame.wildDiglettAppears(800);
+        myGame.wildDiglettAppears(2000);
+        myGame.wildDiglettAppears(2000);
+        myGame.wildDiglettAppears(2000);
         renderBoard();
+        setTimeout(function(){
+          renderBoard();
+        }, 2000);
 
       } else if (timer <= 30 ) {
-        myGame.wildDiglettAppears(900);
-        myGame.wildDiglettAppears(900);
+        myGame.wildDiglettAppears(2500);
+        myGame.wildDiglettAppears(2500);
         renderBoard();
+        setTimeout(function(){
+          renderBoard();
+        }, 2500);
 
       } else if (timer <= 40) {
         myGame.wildDiglettAppears(3000);
         myGame.wildDiglettAppears(3000);
         renderBoard();
+        setTimeout(function(){
+          renderBoard();
+        }, 3000);
 
       } else if (timer <= 50) {
         myGame.wildDiglettAppears(3000);
         renderBoard();
+        setTimeout(function(){
+          renderBoard();
+        }, 3000);
 
       }
     }, 500);
